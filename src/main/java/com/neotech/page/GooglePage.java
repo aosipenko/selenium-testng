@@ -1,6 +1,7 @@
 package com.neotech.page;
 
 import com.neotech.driver.WebDriverFacade;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,13 +21,15 @@ public class GooglePage {
         this.webDriverFacade = webDriverFacade;
     }
 
+    @Step("Load Google page")
     public void loadPage() {
         webDriverFacade.loadPage(URL);
     }
 
+    @Step("Search for \"{0}\"")
     public void search(String searchString) throws Exception {
         webDriverFacade.findElement(GooglePageSelectors.SEARCH_INPUT).sendKeys(searchString);
-        webDriverFacade.click(webDriverFacade.findElement(GooglePageSelectors.SEARCH_BTN), false);
+        webDriverFacade.click(webDriverFacade.waitForElementToBeClickable(GooglePageSelectors.SEARCH_BTN), false);
     }
 
     public boolean validateSearchContains(String searchResult) throws Exception {

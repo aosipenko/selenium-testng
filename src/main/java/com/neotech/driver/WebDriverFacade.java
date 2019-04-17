@@ -29,6 +29,10 @@ public class WebDriverFacade {
         driver.get(url);
     }
 
+    public WebElement waitForElementToBeClickable(ISelectable selectable) {
+        return new WebDriverWait(driver, DEFAULT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(selectable.getLocator()));
+    }
+
     public WebElement findElement(ISelectable selectable) throws Exception {
         try {
             return new WebDriverWait(driver, DEFAULT_TIMEOUT_SECONDS)
@@ -61,6 +65,6 @@ public class WebDriverFacade {
     private void takeScreenshot(String fileName) throws IOException {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         // Now you can do whatever you need to do with it, for example copy somewhere
-        FileUtils.copyFile(scrFile, new File("c:\\tmp\\" + fileName + ".png"));
+        FileUtils.copyFile(scrFile, new File(fileName + ".png"));
     }
 }

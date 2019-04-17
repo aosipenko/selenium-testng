@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 public class WebDriverFactory {
 
     public WebDriver getDriver() throws Exception {
-        WebDriverName driverName = WebDriverName.valueOf(System.getProperty("driver.name","CHROME"));
+        WebDriverName driverName = WebDriverName.valueOf(System.getProperty("driver.name", "CHROME"));
         String driverVersion = System.getProperty("driver.version", null);
         if (WebDriverName.CHROME.equals(driverName)) {
             return chromeDriver(driverVersion);
         } else if (WebDriverName.FIREFOX.equals(driverName)) {
-            return foreFoxDriver(driverVersion);
+            return fireFoxDriver(driverVersion);
         } else if (WebDriverName.EDGE.equals(driverName)) {
             return edgeDriver(driverVersion);
         }
@@ -37,10 +37,13 @@ public class WebDriverFactory {
         ChromeOptions options = new ChromeOptions();
         //in case if tests need to work with self-singned certificates
         options.setAcceptInsecureCerts(true);
+        options.addArguments("--disable-extensions");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         return new ChromeDriver(options);
     }
 
-    private WebDriver foreFoxDriver(String version) {
+    private WebDriver fireFoxDriver(String version) {
         //setup version if specified
         if (version != null) {
             WebDriverManager.firefoxdriver().version(version);
