@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -30,6 +31,10 @@ public class GooglePage {
     public void search(String searchString) throws Exception {
         webDriverFacade.findElement(GooglePageSelectors.SEARCH_INPUT).sendKeys(searchString);
         webDriverFacade.click(webDriverFacade.waitForElementToBeClickable(GooglePageSelectors.SEARCH_BTN), false);
+    }
+
+    public void validateContent(String fileName) throws IOException {
+        webDriverFacade.takeScreenshot(fileName);
     }
 
     public boolean validateSearchContains(String searchResult) throws Exception {

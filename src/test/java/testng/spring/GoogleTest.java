@@ -23,5 +23,6 @@ public class GoogleTest extends TestConfig {
         googlePage.search("twitter");
         assertTrue(googlePage.validateSearchContains("twitter"), "Search result did not contain 'twitter'!");
         assertTrue(googlePage.validateFirstSearchResult("twitter"), "First search result did not contain 'twitter'!");
+        googlePage.validateContent("validationScrn");
     }
 }

@@ -62,9 +62,14 @@ public class WebDriverFacade {
         }
     }
 
-    private void takeScreenshot(String fileName) throws IOException {
+    public void takeScreenshot(String fileName) throws IOException {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         // Now you can do whatever you need to do with it, for example copy somewhere
-        FileUtils.copyFile(scrFile, new File(fileName + ".png"));
+        File screenShot = new File(fileName + ".png");
+        //clean up if file exists
+        if (screenShot.exists()) {
+            screenShot.delete();
+        }
+        FileUtils.copyFile(scrFile, screenShot);
     }
 }
