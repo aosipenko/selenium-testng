@@ -39,6 +39,7 @@ public class WebDriverFactory {
         options.setAcceptInsecureCerts(true);
         options.addArguments("--disable-extensions");
         options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         options.addArguments("--disable-dev-shm-usage");
         return new ChromeDriver(options);
     }
