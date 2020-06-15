@@ -10,7 +10,7 @@
 
     <properties>
         <!--essentials-->
-        <spring.version>5.0.7.RELEASE</spring.version>
+        <spring.version>5.2.7.RELEASE</spring.version>
         <selenium.version>3.13.0</selenium.version>
         <testng.version>7.0.0</testng.version>
         <manager.version>3.4.0</manager.version>
